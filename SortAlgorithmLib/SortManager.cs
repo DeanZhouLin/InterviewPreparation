@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using SortAlgorithmLib.ExchangeSort;
 
 namespace SortAlgorithmLib
 {
@@ -30,59 +29,6 @@ namespace SortAlgorithmLib
             return SortEntity<SortFieldType, EntityType>.ConvertToEntities(sortLs);
         }
 
-    }
-
-    public sealed class IntSortManager<EntityType> : SortManager<int, EntityType>
-    {
-        public IntSortManager(Func<EntityType, int> getSortFieldFunc)
-            : base(getSortFieldFunc, (x, y) => x - y)
-        {
-            SortBase = new BubbleSort<int, EntityType>();
-        }
-    }
-
-    public sealed class DoubleSortManager<EntityType> : SortManager<double, EntityType>
-    {
-        public DoubleSortManager(Func<EntityType, double> getSortFieldFunc)
-            : base(getSortFieldFunc, (x, y) =>
-            {
-                if (x - y > 0)
-                {
-                    return 1;
-                }
-                if (x - y == 0)
-                {
-                    return 0;
-                }
-                return -1;
-            })
-        {
-            SortBase = new BubbleSort<double, EntityType>();
-        }
-    }
-
-    public sealed class StringSortManager<EntityType> : SortManager<string, EntityType>
-    {
-        public StringSortManager(Func<EntityType, string> getSortFieldFunc)
-            : base(getSortFieldFunc, (x, y) =>
-            {
-                double dx, dy;
-                double.TryParse(x, out dx);
-                double.TryParse(y, out dy);
-
-                if (dx - dy > 0)
-                {
-                    return 1;
-                }
-                if (dx - dy == 0)
-                {
-                    return 0;
-                }
-                return -1;
-            })
-        {
-            SortBase = new BubbleSort<string, EntityType>();
-        }
     }
 
 }

@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace SortAlgorithmLib.ExchangeSort
+namespace SortAlgorithmLib
 {
     public class QuickSort<SortFieldType, EntityType> : SortBase<SortFieldType, EntityType>
     {
         public override void Sort(List<SortEntity<SortFieldType, EntityType>> sourceList, SortDirection sd = SortDirection.ASC)
         {
-            int lsCount = sourceList.Count;
+            var lsCount = sourceList.Count;
             ExecQuickSort(sourceList, 0, lsCount - 1);
         }
 
@@ -42,7 +42,7 @@ namespace SortAlgorithmLib.ExchangeSort
             return left;
         }
 
-        private void ExecQuickSort(List<SortEntity<SortFieldType, EntityType>> sourceList, int left, int right)
+        private static void ExecQuickSort(List<SortEntity<SortFieldType, EntityType>> sourceList, int left, int right)
         {
             while (true)
             {

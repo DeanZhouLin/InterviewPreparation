@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SortAlgorithmLib.ExchangeSort
+namespace SortAlgorithmLib
 {
     public class BubbleSort<SortFieldType, EntityType> : SortBase<SortFieldType, EntityType>
     {
