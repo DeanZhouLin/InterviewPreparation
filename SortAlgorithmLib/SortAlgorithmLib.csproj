@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExchangeSort\BubbleSort.cs" />
+    <Compile Include="ExchangeSort\QuickSort.cs" />
     <Compile Include="SortContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="InsertionSort\" />

@@ -13,8 +13,12 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             List<int> ls = new List<int> { 6, 5, 3, 4, 2 };
-            IntSortManager ism = new IntSortManager();
-            var res = ism.BubbleSortList(ls, SortDirection.DESC);
+            IntSortManager<int> ism = new IntSortManager<int>(i => i)
+            {
+                SortBase = new QuickSort<int, int>()
+            };
+            var res = ism.Sort(ls, SortDirection.DESC);
+
             foreach (var item in res)
             {
                 Console.WriteLine(item);
@@ -28,8 +32,8 @@ namespace ConsoleTest
                 new Student("jkj",2,1.68),
                 new Student("jew",1.12,1.78)
             };
-            SortManager<double, Student> sm = new SortManager<double, Student>(i => i.Age, (x, y) => (int)((x - y)*100));
-            var res1 = sm.BubbleSortList(sLs);
+            DoubleSortManager<Student> sm = new DoubleSortManager<Student>(i => i.Age);
+            var res1 = sm.Sort(sLs);
             foreach (var item in res1)
             {
                 Console.WriteLine(item.ToString());
@@ -37,7 +41,7 @@ namespace ConsoleTest
 
             Console.WriteLine("------------------------------");
             sm.GetSortFieldFunc = i => i.Height;
-            res1 = sm.BubbleSortList(sLs);
+            res1 = sm.Sort(sLs);
             foreach (var item in res1)
             {
                 Console.WriteLine(item.ToString());

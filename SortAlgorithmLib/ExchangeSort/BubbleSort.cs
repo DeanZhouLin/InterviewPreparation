@@ -2,9 +2,9 @@
 
 namespace SortAlgorithmLib.ExchangeSort
 {
-    public static class BubbleSort<SortFieldType, EntityType>
+    public class BubbleSort<SortFieldType, EntityType> : SortBase<SortFieldType, EntityType>
     {
-        public static List<SortEntity<SortFieldType, EntityType>> Sort(List<SortEntity<SortFieldType, EntityType>> sourceList, SortDirection sd = SortDirection.ASC)
+        public override void Sort(List<SortEntity<SortFieldType, EntityType>> sourceList, SortDirection sd = SortDirection.ASC)
         {
             int lsCount = sourceList.Count;
             for (int i = 0; i < lsCount; i++)
@@ -30,7 +30,7 @@ namespace SortAlgorithmLib.ExchangeSort
                     }
                 }
             }
-            return sourceList;
         }
+
     }
 }

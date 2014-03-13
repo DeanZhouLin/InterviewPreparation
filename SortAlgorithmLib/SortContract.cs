@@ -5,16 +5,33 @@ using SortAlgorithmLib.ExchangeSort;
 
 namespace SortAlgorithmLib
 {
-
+    /// <summary>
+    /// 排序方向
+    /// </summary>
     public enum SortDirection
     {
+        /// <summary>
+        /// 升序
+        /// </summary>
         ASC,
+        /// <summary>
+        /// 降序
+        /// </summary>
         DESC
     }
 
+    /// <summary>
+    /// 实际进行排序的类型定义
+    /// </summary>
+    /// <typeparam name="SortFieldType">待排序字段的类型</typeparam>
+    /// <typeparam name="EntityType">待排序实体的类型</typeparam>
     public class SortEntity<SortFieldType, EntityType> : IComparable<SortFieldType>
     {
-
+        /// <summary>
+        /// 比较方法
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
         public int CompareTo(SortFieldType other)
         {
             return CompareToFunc(SortField, other);
@@ -22,6 +39,7 @@ namespace SortAlgorithmLib
 
         public SortFieldType SortField { get; set; }
         public EntityType CurrEntity { get; set; }
+
 
         private Func<SortFieldType, SortFieldType, int> CompareToFunc { get; set; }
 
@@ -42,34 +60,19 @@ namespace SortAlgorithmLib
 
     }
 
-    public class SortManager<SortFieldType, EntityType>
+    /// <summary>
+    /// 排序抽象类，实现对List的排序功能
+    /// </summary>
+    /// <typeparam name="SortFieldType">待排序字段的类型</typeparam>
+    /// <typeparam name="EntityType">待排序实体的类型</typeparam>
+    public abstract class SortBase<SortFieldType, EntityType>
     {
-
-        public Func<EntityType, SortFieldType> GetSortFieldFunc { get; set; }
-        public Func<SortFieldType, SortFieldType, int> CompareToFunc { get; set; }
-
-        public SortManager(Func<EntityType, SortFieldType> getSortFieldFunc, Func<SortFieldType, SortFieldType, int> compareToFunc)
-        {
-            GetSortFieldFunc = getSortFieldFunc;
-            CompareToFunc = compareToFunc;
-        }
-
-        public List<EntityType> BubbleSortList(List<EntityType> sourceList, SortDirection sd = SortDirection.ASC)
-        {
-            var sortLs = SortEntity<SortFieldType, EntityType>.ConvertToSortEntities(sourceList, GetSortFieldFunc, CompareToFunc);
-            sortLs = BubbleSort<SortFieldType, EntityType>.Sort(sortLs, sd);
-            return SortEntity<SortFieldType, EntityType>.ConvertToEntities(sortLs);
-        }
-
+        /// <summary>
+        /// 执行排序
+        /// </summary>
+        /// <param name="sourceList">待排序列表</param>
+        /// <param name="sd">升序/降序</param>
+        public abstract void Sort(List<SortEntity<SortFieldType, EntityType>> sourceList, SortDirection sd = SortDirection.ASC);
     }
 
-    public sealed class IntSortManager : SortManager<int, int>
-    {
-
-        public IntSortManager()
-            : base(i => i, (x, y) => x - y)
-        {
-        }
-
-    }
 }
