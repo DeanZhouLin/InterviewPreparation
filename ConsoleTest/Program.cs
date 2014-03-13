@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using SortAlgorithmLib;
 using SortAlgorithmLib.ExchangeSort;
 
@@ -10,39 +11,22 @@ namespace ConsoleTest
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            List<int> ls = new List<int> { 6, 5, 3, 4, 2 };
-            IntSortManager<int> ism = new IntSortManager<int>(i => i)
-            {
-                SortBase = new QuickSort<int, int>()
-            };
-            var res = ism.Sort(ls, SortDirection.DESC);
-
-            foreach (var item in res)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("------------------------------");
-
-            List<Student> sLs = new List<Student>
+        static readonly List<Student> sLs = new List<Student>
             {
                 new Student("周林",1.2,1.98),
                 new Student("wangaihua",3,1.65),
                 new Student("jkj",2,1.68),
                 new Student("jew",1.12,1.78)
             };
-            DoubleSortManager<Student> sm = new DoubleSortManager<Student>(i => i.Age);
-            var res1 = sm.Sort(sLs);
-            foreach (var item in res1)
-            {
-                Console.WriteLine(item.ToString());
-            }
 
-            Console.WriteLine("------------------------------");
-            sm.GetSortFieldFunc = i => i.Height;
-            res1 = sm.Sort(sLs);
-            foreach (var item in res1)
+        static void Main(string[] args)
+        {
+            DoubleSortManager<Student> sm = new DoubleSortManager<Student>(i => i.Age)
+            {
+                SortBase = new QuickSort<double, Student>()
+            };
+
+            foreach (var item in sm.Sort(sLs))
             {
                 Console.WriteLine(item.ToString());
             }
