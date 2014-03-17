@@ -16,10 +16,12 @@ namespace ConsoleTest
 
         static void Main(string[] args)
         {
-            DoubleSortManager<Student> sm = new DoubleSortManager<Student>(i => i.Age)
+            DoubleSortManager<Student> sm = new DoubleSortManager<Student>(i => i.Height)
             {
                 SortBase = new QuickSort<double, Student>()
             };
+
+            sm.SortBase = new SelectionSort<double, Student>();
 
             foreach (var item in sm.Sort(sLs))
             {

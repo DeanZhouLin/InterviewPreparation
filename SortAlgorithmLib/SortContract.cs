@@ -72,6 +72,13 @@ namespace SortAlgorithmLib
         /// <param name="sourceList">待排序列表</param>
         /// <param name="sd">升序/降序</param>
         public abstract void Sort(List<SortEntity<SortFieldType, EntityType>> sourceList, SortDirection sd = SortDirection.ASC);
+
+        protected void ExChangeTwoEntity(List<SortEntity<SortFieldType, EntityType>> sourceList, int i, int j)
+        {
+            SortEntity<SortFieldType, EntityType> t = sourceList[i];
+            sourceList[i] = sourceList[j];
+            sourceList[j] = t;
+        }
     }
 
 }

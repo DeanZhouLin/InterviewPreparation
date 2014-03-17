@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace SortAlgorithmLib
 {
-
     public class SortManager<SortFieldType, EntityType>
     {
         public Func<EntityType, SortFieldType> GetSortFieldFunc { get; set; }
@@ -28,7 +27,5 @@ namespace SortAlgorithmLib
             SortBase.Sort(sortLs, sd);
             return SortEntity<SortFieldType, EntityType>.ConvertToEntities(sortLs);
         }
-
     }
-
 }
