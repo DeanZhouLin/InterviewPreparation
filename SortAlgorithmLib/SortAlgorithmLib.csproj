@@ -42,6 +42,7 @@
     <Compile Include="SortAlgorithms\ExchangeSort\BubbleSort.cs" />
     <Compile Include="SortAlgorithms\ExchangeSort\QuickSort.cs" />
     <Compile Include="SortAlgorithms\SelectionSort\SelectionSort.cs" />
+    <Compile Include="SortAlgorithms\SelectionSort\HeapSort.cs" />
     <Compile Include="SortContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SortManager.cs" />

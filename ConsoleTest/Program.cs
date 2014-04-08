@@ -18,7 +18,7 @@ namespace ConsoleTest
         {
             DoubleSortManager<Student> sm = new DoubleSortManager<Student>(i => i.Height)
             {
-                SortBase = new QuickSort<double, Student>()
+                SortBase = new HeapSort<double, Student>()
             };
 
             sm.SortBase = new SelectionSort<double, Student>();
